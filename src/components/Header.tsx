@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { search } from '../api';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Card from '../components/Card';
 import Grid from '../components/Grid';
 
@@ -10,6 +11,18 @@ const Header = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [hasSearched, setHasSearched] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleLogoClick = () => {
+    if (location.pathname === '/') {
+      // Если мы уже на главной — прокручиваем вверх
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      // Если не на главной — переходим туда
+      navigate('/');
+    }
+  };
 
   // Фокус на инпут при открытии
   const inputRef = React.useRef<HTMLInputElement>(null);
@@ -68,23 +81,32 @@ const Header = () => {
         {/* Левая часть */}
         <div className="header__controls">
           <button className="header__button" aria-label="Previous">
-            <img src="images/arrow_direction_forward_next_right_icon.png" alt="Предыдущий трек" />
+            <i className="fas fa-backward" style={{ fontSize: '20px' }}></i>
           </button>
           <button className="header__button_play" aria-label="Play">
-            <img src="images/multimedia_music_play_player_song_icon.png" alt="Воспроизвести" />
+            <i className="fas fa-play" style={{ fontSize: '20px' }}></i>
           </button>
           <button className="header__button" aria-label="Next">
-            <img src="images/arrow_direction_forward_next_right_icon.png" alt="Следующий трек" />
+            <i className="fas fa-forward" style={{ fontSize: '20px' }}></i>
           </button>
           <button className="header__favorite" aria-label="Add to favorites">
-            <img src="images/favorite_heart_likes_love_icon.png" alt="Добавить в избранное" />
+            <i className="fas fa-heart" style={{ fontSize: '20px' }}></i>
           </button>
         </div>
 
         {/* Центр */}
         <div className="header__center">
-          <img src="images/logo_static_mob.0798d7258e3d.png" alt="Логотип Last.fm" width="120" height="40" />
+          <img
+            src="images/logo_static_mob.0798d7258e3d.png"
+            alt="Логотип Last.fm"
+            width="120"
+            height="40"
+            onClick={handleLogoClick}
+            role="button"
+            tabIndex={0}
+          />
         </div>
+        
 
         {/* Правая часть */}
         <div className="header__right">
@@ -93,7 +115,7 @@ const Header = () => {
             aria-label="Search"
             onClick={() => setIsSearchOpen(!isSearchOpen)}
           >
-            <img src="images/magnifier_search_icon.png" alt="Поиск" />
+            <i className="fas fa-search" style={{ fontSize: '20px', color: '#ccc' }}></i>
           </button>
           <nav className="nav">
             <ul className="nav__list">
@@ -170,13 +192,13 @@ const Header = () => {
         )}
 
         {!loading &&
-         !error &&
-         hasSearched &&
-         query.trim() !== '' &&
-         results.artists.length === 0 &&
-         results.tracks.length === 0 && (
-           <p>Nothing was found</p>
-         )}
+        !error &&
+        hasSearched &&
+        query.trim() !== '' &&
+        !results?.artists?.length &&
+        !results?.tracks?.length && (
+          <p>Nothing was found</p>
+        )}
       </div>
     </>
   );

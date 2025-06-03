@@ -15,8 +15,10 @@ body {
   justify-content: space-between;
   padding: 1rem 2rem;
   background-color: #000;
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
 }
 .header__controls,
@@ -103,16 +105,22 @@ body {
 .nav__link:focus::after {
   width: 100%;
 }
-.header__button_play:hover img,
-.header__button_play:focus img,
-.header__profile:hover img,
-.header__profile:focus img,
-.header__favorite:hover img,
-.header__favorite:focus img,
-.header__search:hover img,
-.header__search:focus img {
+.header__button_play:hover i,
+.header__button_play:focus i,
+.header__profile:hover i,
+.header__profile:focus i,
+.header__favorite:hover i,
+.header__favorite:focus i{
   transform: scale(1.1);
-  outline: none;
+  transition: transform 0.2s ease;
+  color: #bb0001;
+}
+.header__button_play i,
+.header__favorite i,
+.header__search i,
+.header__button i,
+.header__profile i {
+  color: #ccc;
 }
 .header__search-input {
   padding: 6px 10px;
@@ -142,6 +150,7 @@ body {
   opacity: 1;
   transform: translateY(0);
   visibility: visible;
+  margin-top: 4.2rem;
 }
 .search-panel form {
   display: flex;
@@ -174,7 +183,16 @@ body {
   margin: 1rem 0 0.5rem;
   text-align: center;
 }
-
+.header__search i,
+.header__button i {
+  font-size: 20px;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+.header__search:hover i,
+.header__button:hover i {
+  transform: scale(1.1);
+  color: #fff; 
+}
 /*MAIN*/
 .music-section, .popular-tracks {
   max-width: 90vw;
@@ -197,9 +215,11 @@ body {
   display: inline-block;
   padding-bottom: 15px;
   margin-bottom: 2rem;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 .music-section__subtitle:hover {
-  
+  color: #bb0001;
+  transform: scale(1.05);
 }
 .music-section__subtitle::after {
   content: "";
@@ -355,6 +375,22 @@ body {
 .track-item:hover .track-item__genres,
 .track-item:focus .track-item__genres {
   color: #666;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
+}
+.popular-tracks {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  font-family: 'Barlow', sans-serif;
+}
+.tracks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
 }
 
 /*FOOTER*/

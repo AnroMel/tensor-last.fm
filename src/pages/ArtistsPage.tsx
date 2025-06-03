@@ -24,6 +24,20 @@ const ArtistsPage: React.FC = () => {
 
   return (
     <section className="music-section">
+      <button
+        onClick={() => window.location.href = '/'}
+        style={{
+          background: 'none',
+          border: 'none',
+          color: '#000',
+          cursor: 'pointer',
+          fontSize: '1rem',
+          marginBottom: '2rem',
+          display: 'block'
+        }}
+      >
+      <h2 className="music-section__subtitle"> ← Back to Home</h2> 
+      </button>
       <h1 className="music-section__title">Music</h1>
       <h2 className="music-section__subtitle">Hot right now</h2>
 

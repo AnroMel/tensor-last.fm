@@ -1,4 +1,5 @@
 import React from 'react';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 import {
   BrowserRouter as Router,
   Routes,
@@ -6,27 +7,26 @@ import {
 } from 'react-router-dom';
 
 import Header from './components/Header';
+import Footer from './components/Footer';
 import ArtistsPage from './pages/ArtistsPage';
-import TracksPage from './pages/TracksPage';
+import TracksPage from './pages/TrackPage';
+import TemplateStatic from './components/Template_static';  // Главная страница
+
 
 /**
  * Основной компонент приложения с маршрутизацией.
  */
 const App: React.FC = () => (
-  <Router
-    future={{
-      v7_startTransition: true,
-      v7_relativeSplatPath: true,
-    }}
-  >
+  <Router>
     <Header />
-    <main>
+    <main style={{ marginTop: '6rem' }}>
       <Routes>
-        <Route path="/" element={<div></div>} />
+        <Route path="/" element={<TemplateStatic />} />
         <Route path="/artists" element={<ArtistsPage />} />
         <Route path="/tracks" element={<TracksPage />} />
       </Routes>
     </main>
+    <Footer />
   </Router>
 );
 

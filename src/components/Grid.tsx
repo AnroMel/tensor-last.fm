@@ -13,4 +13,3 @@ const Grid: React.FC<GridProps> = ({ children }) => {
 };
 
 export default Grid;
-
