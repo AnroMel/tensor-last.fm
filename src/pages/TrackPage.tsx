@@ -26,20 +26,6 @@ const TracksPage: React.FC = () => {
 
   return (
     <section className="popular-tracks">
-        <button
-            onClick={() => window.location.href = '/'}
-            style={{
-            background: 'none',
-            border: 'none',
-            color: '#000',
-            cursor: 'pointer',
-            fontSize: '1rem',
-            marginBottom: '2rem',
-            display: 'block'
-            }}
-        >
-        <h2 className="music-section__subtitle"> ← Back to Home</h2> 
-      </button>
       <h2 className="music-section__subtitle">Popular tracks</h2>
 
       <div className="tracks-grid">

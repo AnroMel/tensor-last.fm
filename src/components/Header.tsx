@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { search } from '../api';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Card from '../components/Card';
 import Grid from '../components/Grid';
 
@@ -119,12 +120,30 @@ const Header = () => {
           </button>
           <nav className="nav">
             <ul className="nav__list">
-              <li><a href="#" className="nav__link barlow-regular">Home</a></li>
-              <li><a href="#" className="nav__link barlow-regular">Live</a></li>
-              <li><a href="#" className="nav__link barlow-regular">Music</a></li>
-              <li><a href="#" className="nav__link barlow-regular">Charts</a></li>
-              <li><a href="#" className="nav__link barlow-regular">Events</a></li>
-              <li><a href="#" className="nav__link barlow-regular">Features</a></li>
+              <li>
+                <Link
+                  to="/"
+                  className={`nav__link barlow-regular ${location.pathname === '/' ? 'nav__link--active' : ''}`}
+                >
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/artists"
+                  className={`nav__link barlow-regular ${location.pathname === '/artists' ? 'nav__link--active' : ''}`}
+                >
+                  Music
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/tracks"
+                  className={`nav__link barlow-regular ${location.pathname === '/tracks' ? 'nav__link--active' : ''}`}
+                >
+                  Tracks
+                </Link>
+              </li>
             </ul>
           </nav>
           <button className="header__profile" aria-label="User Menu">

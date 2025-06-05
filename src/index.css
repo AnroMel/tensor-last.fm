@@ -100,7 +100,13 @@ body {
   transform: translateX(5px);
   outline: none;
 }
-
+.nav__link--active {
+  color: #e63946;
+  text-decoration: none;
+}
+.nav__link--active::after {
+  width: 100%;
+}
 .nav__link:hover::after,
 .nav__link:focus::after {
   width: 100%;
